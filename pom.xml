@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>uitproberen2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>uitproberen2</name>
-    <description>uitproberen2</description>
+    <name>uitproberen3</name>
+    <description>uitproberen3</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -41,6 +41,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 
