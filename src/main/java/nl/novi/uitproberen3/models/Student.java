@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+// eventuele validaties (@NotBlank, @Max, etc), komen nu in Dto, niet in de entiteit.
+
 @Entity
 @Table(name = "students")
 public class Student {

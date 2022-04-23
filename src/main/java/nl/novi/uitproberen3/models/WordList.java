@@ -1,9 +1,9 @@
 package nl.novi.uitproberen3.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +12,26 @@ import java.util.List;
 public class WordList {
 
     @Id
-    @Column(nullable = false, unique = true)
+    @GeneratedValue
+    private Long id;
+
+    @NotBlank
+    @UniqueElements
     private String title;
 
-//    @Column
-//    private List<Word> wordlist = new WordList;
+//    private List<Word> wordlist;
 
 
     public WordList() {
 
     }
 
-
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

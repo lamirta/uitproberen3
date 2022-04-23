@@ -27,6 +27,9 @@ public class WordController {
         List<Word> lw = repository.findAll();
         return new ResponseEntity<>(lw, HttpStatus.OK);
     }
+    // hier geef ik dus een woordenlijst terug, dus heb ik geen klasse woordenlijst nodid?
+    // hoe kan de client dan die woordenlijst zelf een title/name geven?
+
 
     @PostMapping("/words")
     public ResponseEntity<Object> createWord(@Valid @RequestBody Word w, BindingResult br) {
