@@ -63,4 +63,7 @@ public class StudentServiceImpl implements StudentService {
         // s van Student entity is nu aangemaakt en vangt alles van dto op.
     }
 
+    // check TechItEasy fifth, TelevisionServiceImpl om de juiste wijze van dto naar entiteit en andersom te schrijven:
+    // transferToDto & tranferToEntiteit methodes..
+
 }

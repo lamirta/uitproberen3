@@ -32,7 +32,7 @@ public class WordController {
 
 
     @PostMapping("/words")
-    public ResponseEntity<Object> createWord(@Valid @RequestBody Word w, BindingResult br) {
+    public ResponseEntity<Object> addWord(@Valid @RequestBody Word w, BindingResult br) {
         if (br.hasErrors()) {
             StringBuilder sb = new StringBuilder();
             for (FieldError fe : br.getFieldErrors()) {
@@ -43,7 +43,7 @@ public class WordController {
         }
         else {
             repository.save(w);
-            return new ResponseEntity<>("Woord aangemaakt!", HttpStatus.CREATED);
+            return new ResponseEntity<>("Woord toegevoegd!", HttpStatus.CREATED);
         }
     }
 

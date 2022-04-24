@@ -1,5 +1,6 @@
 package nl.novi.uitproberen3.dtos;
 
+// als je Lombok gebruik moet je wel alle velden final maken.
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
