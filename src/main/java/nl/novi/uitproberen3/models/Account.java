@@ -4,7 +4,8 @@ public class Account {
     private String personalInfo;
     private byte[] profilePicture;
     // moet ik een aparte entiteit aanmaken voor profiel foto?
-
+    private String activiteitenLog;
+    // moet ik een aparte entiteit aanmaken voor activiteiten log?
 }
 
 

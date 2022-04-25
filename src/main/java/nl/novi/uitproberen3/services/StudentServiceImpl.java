@@ -1,13 +1,14 @@
 package nl.novi.uitproberen3.services;
 
 import nl.novi.uitproberen3.dtos.StudentDto;
+import nl.novi.uitproberen3.exceptions.UsernameNotFoundException;
 import nl.novi.uitproberen3.models.Student;
 import nl.novi.uitproberen3.repositories.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -44,6 +45,35 @@ public class StudentServiceImpl implements StudentService {
         return students;
     }
 
+
+    @Override
+    public StudentDto getStudentByUsername(String username) {
+        StudentDto sdto = new StudentDto();
+        if (studentRepository.findById(username).isPresent()){
+            Student s = studentRepository.findById(username).get();
+            sdto.setUsername(s.getUsername());
+            sdto.setPassword(s.getPassword());
+            sdto.setEmail(s.getEmail());
+            sdto.setFirstName(s.getFirstName());
+            sdto.setLastName(s.getLastName());
+            sdto.setAge(s.getAge());
+            sdto.setSchool(s.getSchool());
+            return sdto;
+        } else {
+            throw new UsernameNotFoundException("Geen leerling gevonden");
+        }
+
+        // wat is het verschil tussen deze twee manieren?
+        // wat doet optional?
+//        StudentDto sdto = new StudentDto();
+//        Optional<Student> student = studentRepository.findById(username);
+//        if (student.isPresent()){
+//            sdto = fromStudent(student.get());
+//        }else {
+//            throw new UsernameNotFoundException(username);
+//        }
+//        return sdto;
+    }
 
     @Override
     public Student createStudent(StudentDto studentDto) {

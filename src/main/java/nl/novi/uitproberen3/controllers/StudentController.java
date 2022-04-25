@@ -1,18 +1,12 @@
 package nl.novi.uitproberen3.controllers;
 
 import nl.novi.uitproberen3.dtos.StudentDto;
-import nl.novi.uitproberen3.models.Student;
-import nl.novi.uitproberen3.repositories.StudentRepository;
 import nl.novi.uitproberen3.services.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,6 +29,13 @@ public class StudentController {
         return new ResponseEntity<>(ls, HttpStatus.OK);
     }
 
+    @GetMapping("/students/{username}")
+    public ResponseEntity<StudentDto> getStudentByUsername(@PathVariable("username") String username) {
+        StudentDto optionalStudent = service.getStudentByUsername(username);
+
+        return ResponseEntity.ok().body(optionalStudent);
+    }
+
     @PostMapping("/students")
     public ResponseEntity<Object> createStudent(@Valid @RequestBody StudentDto sdto, BindingResult br) {
         if (br.hasErrors()) {
@@ -50,5 +51,7 @@ public class StudentController {
             return new ResponseEntity<>("Leerling aangemaakt!", HttpStatus.CREATED);
         }
     }
+
+
 
 }

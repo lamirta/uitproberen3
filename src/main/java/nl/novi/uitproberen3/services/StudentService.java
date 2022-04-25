@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface StudentService {
     public List<StudentDto> getStudents();
+    public StudentDto getStudentByUsername(String username);
     public Student createStudent(StudentDto studentDto);
 
 }
