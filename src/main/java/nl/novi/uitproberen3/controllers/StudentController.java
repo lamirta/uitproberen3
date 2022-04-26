@@ -31,9 +31,9 @@ public class StudentController {
 
     @GetMapping("/students/{username}")
     public ResponseEntity<StudentDto> getStudentByUsername(@PathVariable("username") String username) {
-        StudentDto optionalStudent = service.getStudentByUsername(username);
+        StudentDto sdto = service.getStudentByUsername(username);
 
-        return ResponseEntity.ok().body(optionalStudent);
+        return ResponseEntity.ok().body(sdto);
     }
 
     @PostMapping("/students")

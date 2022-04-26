@@ -33,20 +33,11 @@ public class WordListController {
         return new ResponseEntity<>(allWordLists, HttpStatus.OK);
     }
 
+    // br is eigenlijk meer voor formulieren
     @PostMapping(value = "/wordlists")
-    public ResponseEntity<Object> createWordList(@Valid @RequestBody WordList wl, BindingResult br) {
-        if (br.hasErrors()) {
-            StringBuilder sb = new StringBuilder();
-            for (FieldError fe : br.getFieldErrors()) {
-                sb.append(fe.getDefaultMessage());
-                sb.append("\n");
-            }
-            return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
-        }
-        else {
-            service.createWordList(wl);
-            return new ResponseEntity<>("Woordenlijst aangemaakt!", HttpStatus.CREATED);
-        }
+    public ResponseEntity<Object> createWordList(@Valid @RequestBody WordList wl) {
+        service.createWordList(wl);
+        return new ResponseEntity<>("Woordenlijst aangemaakt!", HttpStatus.CREATED);
     }
 
 }

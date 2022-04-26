@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -23,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-    // hier maakt hij bovenaan boven automatisch een field aan die 'final' is. Die repos is dus altijd hetzelfde, which is good.
+
 
 
 //    // dit is eigenlijk niet netjes, want we willen juist dtos meegeven door het systeem, niet de entiteit.
@@ -33,6 +32,7 @@ public class StudentServiceImpl implements StudentService {
 //        return studentRepository.findAll();
 //    }
 
+    // Moet hier geen exception gegooit worden?
     @Override
     public List<StudentDto> getStudents() {
         List<Student> ls = this.studentRepository.findAll();
@@ -62,17 +62,6 @@ public class StudentServiceImpl implements StudentService {
         } else {
             throw new UsernameNotFoundException("Geen leerling gevonden");
         }
-
-        // wat is het verschil tussen deze twee manieren?
-        // wat doet optional?
-//        StudentDto sdto = new StudentDto();
-//        Optional<Student> student = studentRepository.findById(username);
-//        if (student.isPresent()){
-//            sdto = fromStudent(student.get());
-//        }else {
-//            throw new UsernameNotFoundException(username);
-//        }
-//        return sdto;
     }
 
     @Override
@@ -86,7 +75,7 @@ public class StudentServiceImpl implements StudentService {
         s.setAge(studentDto.getAge());
         s.setSchool(studentDto.getSchool());
         return studentRepository.save(s);
-//        return studentRepository.save(StudentDto);
+        //return studentRepository.save(StudentDto);
         // Normaal return je StudentDto, maar de .save() method verwacht een entitiet:
         // Hij kent hier die dto niet, want dat is geen entiteit. Dus maak je eerst die entitiet aan,
         // door al die velden van het dto object hier te kopieren en te declareren naar de entiteit..
@@ -97,3 +86,4 @@ public class StudentServiceImpl implements StudentService {
     // transferToDto & tranferToEntiteit methodes..
 
 }
+
