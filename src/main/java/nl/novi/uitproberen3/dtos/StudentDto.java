@@ -4,8 +4,6 @@ package nl.novi.uitproberen3.dtos;
 import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,8 +12,6 @@ import javax.persistence.Id;
 @Data
 public class StudentDto {
 
-    @Id
-    @GeneratedValue
     private Long id;
 
     @UniqueElements

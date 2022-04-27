@@ -7,9 +7,13 @@ import javax.persistence.Table;
 
 // eventuele validaties (@NotBlank, @Max, etc), komen nu in Dto, niet in de entiteit.
 
+// wil ik nu eigenlijk hier username, password en email weg en dat in User klasse laten.
+
 @Entity
 @Table(name = "students")
 public class Student {
+
+    // dit is in principe account
 
     @Id
     @GeneratedValue
@@ -21,6 +25,8 @@ public class Student {
     private String lastName;
     private int age;
     private String school;
+
+    // relatie tussen student en image
 
     public Student() {
     }

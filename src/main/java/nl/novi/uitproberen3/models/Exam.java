@@ -3,30 +3,34 @@ package nl.novi.uitproberen3.models;
 import nl.novi.uitproberen3.models.WordList;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "exams")
 public class Exam {
-//    private String words; //maar die krijgt ie niet van de client, die krijgt ie uit de database?
-//    private enum titleWordList{WORD_LIST}; //client moet uit woordenlijst kiezen
-//    private int timesPractised; //with list // activiteit bijhouden
-//    private boolean spelledCorrectly;
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String userInput;
+    private int wrongEntries;
 
-    @OneToOne
+    private boolean isPassed;
+
+    private LocalDateTime dateTime;
+
+    @ManyToOne
+    @JoinColumn(name = "wordlist_id")
     private WordList wordList;
-    //OF
-//    @OneToMany(mappedBy = "wordlists")
-//    private List<WordList> wordLists;
-
-    // User kiest van te voren met welke woordenlijst ze willen oefenen. Eenmaal in het 'Exam', is er maar 1 woordenlijst.
 
     public Exam() {
+    }
+
+    public Exam(WordList wordList, int wrongEntries, boolean isPassed, LocalDateTime dateTime) {
+        this.wordList = wordList;
+        this.wrongEntries = wrongEntries;
+        this.isPassed = isPassed;
+        this.dateTime = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -36,17 +40,40 @@ public class Exam {
         this.id = id;
     }
 
-    public String getUserInput() {
-        return userInput;
-    }
-    public void setUserInput(String userInput) {
-        this.userInput = userInput;
-    }
-
     public WordList getWordList() {
         return wordList;
     }
     public void setWordList(WordList wordList) {
         this.wordList = wordList;
     }
+
+    public int getWrongEntries() {
+        return wrongEntries;
+    }
+    public void setWrongEntries(int wrongEntries) {
+        this.wrongEntries = wrongEntries;
+    }
+
+    public boolean isPassed() {
+        return isPassed;
+    }
+    public void setPassed(boolean passed) {
+        isPassed = passed;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = LocalDateTime.now();
+    }
+
+//    public void setDateTime(LocalDateTime dateTime) {
+//        this.dateTime = dateTime;
+//    } // wanneer moet ik die local dat time zetten?
+
 }
+
+// User kiest van te voren met welke woordenlijst ze willen oefenen.
+// Dus wanneer er een nieuw object Exam geinstansieerd wordt (door user)..
+// Is er maar 1 woordenlijst. Dus?  ManyToOne

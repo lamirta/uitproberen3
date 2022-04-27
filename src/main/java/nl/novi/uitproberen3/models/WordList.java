@@ -20,12 +20,14 @@ public class WordList {
     @UniqueElements
     private String title;
 
+    // hier kan eventueel weer een relatie gaan naar Exam. Om aan te geven welke woorden fout zijn nagetypt.
+    // is dat mogelijk?
     @ElementCollection
     private List<String> words = new ArrayList<String>();
 
-    @OneToOne
-    private Exam exam;
-    //moet dit wel 1 to 1 zijn?
+    @OneToMany(mappedBy = "wordList")
+    private List<Exam> exams;
+
 
     public WordList() {
 
@@ -52,4 +54,10 @@ public class WordList {
         this.words = words;
     }
 
+    public List<Exam> getExams() {
+        return exams;
+    }
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
 }
