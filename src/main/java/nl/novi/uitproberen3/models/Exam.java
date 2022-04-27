@@ -5,6 +5,7 @@ import nl.novi.uitproberen3.models.WordList;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "exams")
 public class Exam {

@@ -1,5 +1,9 @@
 package nl.novi.uitproberen3.models;
 
+enum Role {
+    STUDENT, TEACHER;
+}
+
 public class Account {
     private String personalInfo;
     private byte[] profilePicture;

@@ -1,9 +1,6 @@
 package nl.novi.uitproberen3.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class Image {
@@ -14,10 +11,12 @@ public class Image {
     @Lob
     public byte[] image;
 
-    private String uploadedByUsername;
-
     private String mediaType;
 
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "student_id", referencedColumnName = "id")
+//    private Student student;
+// uitzoek of dit welke precies bij student en welke bij image moet staan. is het bidirectional of niet?
 
     public String getImageName() {
         return imageName;
@@ -31,13 +30,6 @@ public class Image {
     }
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public String getUploadedByUsername() {
-        return uploadedByUsername;
-    }
-    public void setUploadedByUsername(String uploadedByUsername) {
-        this.uploadedByUsername = uploadedByUsername;
     }
 
     public String getMediaType() {
